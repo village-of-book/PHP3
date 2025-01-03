@@ -1,14 +1,20 @@
 <?php
 // 検索フォームの値を定義
 $read_title = $_POST['read_title'];
-echo($read_title);
+$read_key_word01 = $_POST['read_key_word01'];
+echo($read_key_word01);
 
 //DB接続
 include('failure_functions.php');
 $pdo = connect_to_db();
 
 // SQL作成&実行
-$sql = 'SELECT * FROM `memo` WHERE title LIKE "%' . $_POST["read_title"] . '%"';
+$sql = 'SELECT * FROM `memo` WHERE `key_word01` LIKE "%' . $_POST["read_key_word01"] . '%"';
+// $sql = 
+// 'SELECT * FROM `memo` 
+// WHERE `key_word01` LIKE '. $read_key_word01 .'
+// ';
+// $sql = 'SELECT * FROM `memo` WHERE title LIKE "%' . $_POST["read_title"] . '%"';
 
 $stmt = $pdo->prepare($sql);
 
@@ -33,6 +39,72 @@ foreach ($result as $record) {
       <td>{$record["title"]}</td>
       <td>{$record["text_failure"]}</td>
       <td>{$record["text_success"]}</td>
+      <td>{$record["key_word01"]}</td>
+      <td>{$record["key_word02"]}</td>
+      <td>{$record["key_word03"]}</td>
+      <td>{$record["key_word04"]}</td>
+      <td>{$record["key_word05"]}</td>
+
+    </tr>
+  ";
+}
+
+// キーワード取得SQL
+$sql_key_word = 'SELECT * FROM key_word';
+
+$stmt_key_word = $pdo->prepare($sql_key_word);
+
+// SQL実行（実行に失敗すると `sql error ...` が出力される）
+try {
+  $status_key_word = $stmt_key_word->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$result_key_word = $stmt_key_word->fetchAll(PDO::FETCH_ASSOC);
+
+$output_key_word01 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word01 .= "
+    <tr>
+      <td>{$record["key_word01"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word02 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word02 .= "
+    <tr>
+      <td>{$record["key_word02"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word03 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word03 .= "
+    <tr>
+      <td>{$record["key_word03"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word04 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word04 .= "
+    <tr>
+      <td>{$record["key_word04"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word05 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word05 .= "
+    <tr>
+      <td>{$record["key_word05"]}</td>
     </tr>
   ";
 }
@@ -64,6 +136,26 @@ foreach ($result as $record) {
           ⚪︎成功内容: <input type="textarea" name="read_text_success" size="40">
           </div>
 
+          <div>
+          <input type="checkbox" name="read_key_word01">:キーワード01: <?= $output_key_word01 ?>
+          </div>
+
+          <div>
+          <input type="checkbox" name="read_key_word01">:キーワード02: <?= $output_key_word02 ?>
+          </div>
+
+          <div>
+          <input type="checkbox" name="read_key_word01">:キーワード03: <?= $output_key_word03 ?>
+          </div>
+
+          <div>
+          <input type="checkbox" name="read_key_word01">:キーワード04: <?= $output_key_word04 ?>
+          </div>
+
+          <div>
+          <input type="checkbox" name="read_key_word01">:キーワード05: <?= $output_key_word05 ?>
+          </div>
+
         <div>
           <button>検索</button>
         </div>
@@ -79,6 +171,11 @@ foreach ($result as $record) {
           <th>タイトル</th>
           <th>失敗</th>
           <th>成功</th>
+          <th>kw01</th>
+          <th>kw02</th>
+          <th>kw03</th>
+          <th>kw04</th>
+          <th>kw05</th>
         </tr>
       </thead>
       <tbody>

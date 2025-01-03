@@ -23,13 +23,74 @@ foreach ($result as $record) {
       <td>{$record["title"]}</td>
       <td>{$record["text_failure"]}</td>
       <td>{$record["text_success"]}</td>
-            <td>
+      <td>{$record["key_word01"]}</td>
+      <td>
         <a href='failure_edit.php?id={$record["id"]}'>編集</a>
       </td>
       <td>
         <a href='failure_delete.php?id={$record["id"]}'>削除</a>
       </td>
 
+    </tr>
+  ";
+}
+
+// キーワード取得SQL
+$sql_key_word = 'SELECT * FROM key_word';
+
+$stmt_key_word = $pdo->prepare($sql_key_word);
+
+// SQL実行（実行に失敗すると `sql error ...` が出力される）
+try {
+  $status_key_word = $stmt_key_word->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$result_key_word = $stmt_key_word->fetchAll(PDO::FETCH_ASSOC);
+
+$output_key_word01 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word01 .= "
+    <tr>
+      <td>{$record["key_word01"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word02 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word02 .= "
+    <tr>
+      <td>{$record["key_word02"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word03 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word03 .= "
+    <tr>
+      <td>{$record["key_word03"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word04 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word04 .= "
+    <tr>
+      <td>{$record["key_word04"]}</td>
+    </tr>
+  ";
+}
+
+$output_key_word05 = "";
+foreach ($result_key_word as $record) {
+  $output_key_word05 .= "
+    <tr>
+      <td>{$record["key_word05"]}</td>
     </tr>
   ";
 }
@@ -62,6 +123,33 @@ foreach ($result as $record) {
         ⚪︎成功内容: <input type="textarea" name="text_success" size="40">
         </div>
 
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード01: <a href='keyword_edit.php'><?= $output_key_word01 ?></a>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード02: <a href='keyword_edit.php'><?= $output_key_word02 ?></a>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード03: <a href='keyword_edit.php'><?= $output_key_word03 ?></a>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード04: <a href='keyword_edit.php'><?= $output_key_word04 ?></a>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード05: <a href='keyword_edit.php'><?= $output_key_word05 ?></a>
+        </div>
+
+        <!-- <td>
+        <a href='failure_edit.php?id={$record["id"]}'>編集</a>
+        </td>
+        <td>
+        <a href='failure_delete.php?id={$record["id"]}'>削除</a>
+        </td> -->
+
       <div>
         <button>入力</button>
       </div>
@@ -77,6 +165,12 @@ foreach ($result as $record) {
           <th>タイトル</th>
           <th>失敗</th>
           <th>成功</th>
+          <th>kw01</th>
+          <th>kw02</th>
+          <th>kw03</th>
+          <th>kw04</th>
+          <th>kw05</th>
+
         </tr>
       </thead>
       <tbody>

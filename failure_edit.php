@@ -49,6 +49,26 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
         ⚪︎成功内容: <input type="textarea" name="text_success" size="40" value="<?= $record['text_success'] ?>">
         </div>
 
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード01: <?= $record['key_word01'] ?>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード02: <?= $record['key_word02'] ?>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード03: <?= $record['key_word03'] ?>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード04: <?= $record['key_word04'] ?>
+        </div>
+
+        <div>
+        <input type="checkbox" name="key_word01">:キーワード05: <?= $record['key_word05'] ?>
+        </div>
+
       <div>
         <button>上書き</button>
       </div>
