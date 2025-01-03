@@ -24,6 +24,10 @@ foreach ($result as $record) {
       <td>{$record["text_failure"]}</td>
       <td>{$record["text_success"]}</td>
       <td>{$record["key_word01"]}</td>
+      <td>{$record["key_word02"]}</td>
+      <td>{$record["key_word03"]}</td>
+      <td>{$record["key_word04"]}</td>
+      <td>{$record["key_word05"]}</td>
       <td>
         <a href='failure_edit.php?id={$record["id"]}'>編集</a>
       </td>
@@ -128,19 +132,19 @@ foreach ($result_key_word as $record) {
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード02: <a href='keyword_edit.php'><?= $output_key_word02 ?></a>
+        <input type="checkbox" name="key_word02">:キーワード02: <a href='keyword_edit.php'><?= $output_key_word02 ?></a>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード03: <a href='keyword_edit.php'><?= $output_key_word03 ?></a>
+        <input type="checkbox" name="key_word03">:キーワード03: <a href='keyword_edit.php'><?= $output_key_word03 ?></a>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード04: <a href='keyword_edit.php'><?= $output_key_word04 ?></a>
+        <input type="checkbox" name="key_word04">:キーワード04: <a href='keyword_edit.php'><?= $output_key_word04 ?></a>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード05: <a href='keyword_edit.php'><?= $output_key_word05 ?></a>
+        <input type="checkbox" name="key_word05">:キーワード05: <a href='keyword_edit.php'><?= $output_key_word05 ?></a>
         </div>
 
         <!-- <td>

@@ -10,9 +10,13 @@ $title = $_POST['title'];
 $text_failure = $_POST['text_failure'];
 $text_success = $_POST['text_success'];
 $key_word01 = $_POST['key_word01'];
+$key_word02 = $_POST['key_word02'];
+$key_word03 = $_POST['key_word03'];
+$key_word04 = $_POST['key_word04'];
+$key_word05 = $_POST['key_word05'];
 
 // SQL作成&実行
-$sql = 'INSERT INTO memo(id, title, text_failure, text_success, created_at, updated_at, key_word01) VALUES (NULL, :title, :text_failure, :text_success, now(), now(), :key_word01)';
+$sql = 'INSERT INTO memo(id, title, text_failure, text_success, created_at, updated_at, key_word01, key_word02, key_word03, key_word04, key_word05) VALUES (NULL, :title, :text_failure, :text_success, now(), now(), :key_word01, :key_word02, :key_word03, :key_word04, :key_word05)';
 
 $stmt = $pdo->prepare($sql);
 
@@ -21,6 +25,10 @@ $stmt->bindValue(':title', $title, PDO::PARAM_STR);
 $stmt->bindValue(':text_failure', $text_failure, PDO::PARAM_STR);
 $stmt->bindValue(':text_success', $text_success, PDO::PARAM_STR);
 $stmt->bindValue(':key_word01', $key_word01, PDO::PARAM_STR);
+$stmt->bindValue(':key_word02', $key_word02, PDO::PARAM_STR);
+$stmt->bindValue(':key_word03', $key_word03, PDO::PARAM_STR);
+$stmt->bindValue(':key_word04', $key_word04, PDO::PARAM_STR);
+$stmt->bindValue(':key_word05', $key_word05, PDO::PARAM_STR);
 
 // SQL実行（実行に失敗すると `sql error ...` が出力される）
 try {
