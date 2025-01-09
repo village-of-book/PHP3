@@ -1,6 +1,6 @@
 # 失敗アプリ
 ## PHP構成
-- 6つのPHPで構成されている
+- 主に２つの役割ののPHPパートで構成されている（CRUD、user）
 ### CRUD①failure_functions.php
 - DB接続のための機能
 ### CRUD②failure_input.php
