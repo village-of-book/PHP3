@@ -1,19 +1,25 @@
 <?php
-// 検索フォームの値を定義
-$read_title = $_POST['read_title'];
-$read_key_word01 = $_POST['read_key_word01'];
-echo($read_key_word01);
+session_start();
+include("functions.php");
+check_session_id();
 
 //DB接続
-include('failure_functions.php');
 $pdo = connect_to_db();
+// 検索フォームの値を定義
+// $read_title = $_POST['read_title'];
+// $read_key_word01 = $_POST['read_key_word01'];
+// echo($read_key_word01);
+
 
 // SQL作成&実行
 $sql = 'SELECT * FROM `memo` WHERE `key_word01` LIKE "%' . $_POST["read_key_word01"] . '%"';
+
+// SQL作成&実行テスト
 // $sql = 
-// 'SELECT * FROM `memo` 
+// "SELECT * FROM `memo` 
 // WHERE `key_word01` LIKE '. $read_key_word01 .'
-// ';
+// AND WHERE `key_word02` LIKE '. $read_key_word02 .'
+// ";
 // $sql = 'SELECT * FROM `memo` WHERE title LIKE "%' . $_POST["read_title"] . '%"';
 
 $stmt = $pdo->prepare($sql);
@@ -124,6 +130,8 @@ foreach ($result_key_word as $record) {
   <form action="failure_read.php" method="POST">
       <fieldset>
         <legend>DB連携型 失敗アプリ（検索キーワード画面）</legend>
+        <a href="failure_read.php">検索画面へ</a>
+        <a href="user_logout.php">logout</a>
         <div>
           タイトル: <input type="text" name="read_title">
         </div>

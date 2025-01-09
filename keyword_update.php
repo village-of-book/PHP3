@@ -42,6 +42,6 @@ try {
   exit();
 }
 
-header("Location:keyword_edit.php");
+header("Location:failure_input.php");
 exit();
 

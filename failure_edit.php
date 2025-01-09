@@ -1,5 +1,8 @@
 <?php
-include("failure_functions.php");
+session_start();
+include("functions.php");
+check_session_id();
+
 // id受け取り
 // var_dump($_GET)
 $id = $_GET['id'];
@@ -37,6 +40,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
     <input type="hidden" name="id" value="<?= $record['id'] ?>">
       <legend>DB連携型 過去の成功のもと（編集画面）</legend>
       <a href="failure_input.php">入力画面</a>
+      <a href="user_logout.php">logout</a>
       <div>
         タイトル: <input type="text" name="title" value="<?= $record['title'] ?>">
       </div>
@@ -54,19 +58,19 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード02: <?= $record['key_word02'] ?>
+        <input type="checkbox" name="key_word02">:キーワード02: <?= $record['key_word02'] ?>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード03: <?= $record['key_word03'] ?>
+        <input type="checkbox" name="key_word03">:キーワード03: <?= $record['key_word03'] ?>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード04: <?= $record['key_word04'] ?>
+        <input type="checkbox" name="key_word04">:キーワード04: <?= $record['key_word04'] ?>
         </div>
 
         <div>
-        <input type="checkbox" name="key_word01">:キーワード05: <?= $record['key_word05'] ?>
+        <input type="checkbox" name="key_word05">:キーワード05: <?= $record['key_word05'] ?>
         </div>
 
       <div>

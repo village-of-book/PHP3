@@ -1,5 +1,8 @@
 <?php
-include('failure_functions.php');
+session_start();
+include("functions.php");
+check_session_id();
+
 $pdo = connect_to_db();
 
 // SQL作成&実行
@@ -115,6 +118,7 @@ foreach ($result_key_word as $record) {
     <fieldset>
       <legend>DB連携型 失敗アプリ（入力画面）</legend>
       <a href="failure_read.php">検索画面へ</a>
+      <a href="user_logout.php">logout</a>
       <div>
         タイトル: <input type="text" name="title" required>
       </div>
